@@ -1,0 +1,17 @@
+
+
+#ErrorDocument 404 /404
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php 
+ErrorDocument 404 "<H1>404 Page not found</H1>"
+RewriteCond %{REQUEST_METHOD} !^(GET|HEAD|POST|PROPFIND|OPTIONS|PUT)$ [NC]
+RewriteRule .* - [F,NS,L]
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.ovelpo.life [NC]
+RewriteRule ^(.*)$ http://ovelpo.life/$1 [L,R=301]
